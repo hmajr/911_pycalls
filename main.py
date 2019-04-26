@@ -38,7 +38,12 @@ if __name__ == "__main__":
     while running:
         option = menu.menu_gui()
 
-        if option == "top_zips":
+        if option == "print_df":
+            print("----------------------------------------")
+            print("\t FIRST 5 OF DATA FRAME")
+            print("----------------------------------------")
+            print(df_911.head())
+        elif option == "top_zips":
             print("\n")
             print("----------------------------------------")
             print("\t TOP 5 ZIP CODES")
@@ -71,12 +76,8 @@ if __name__ == "__main__":
             print("----------------------------------------")
             print("\t TOP 5 COMMON REASONS CALLS")
             print("----------------------------------------")
-
-        if not("Reason" in df_911):
-            #CRIA COLUNA 'REASON'
-            df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
-                    
-        print(df_911["Reason"].value_counts().head(5))
+            
+            print(df_911["Reason"].value_counts().head(5))
 
             #PLOTA GRAFICO
             sns.countplot(x="Reason", data=df_911)
