@@ -23,7 +23,7 @@ if __name__ == "__main__":
     print(df_911.info())
     print("\n")
     print(df_911.head())
-    
+    pause = input("PRESS ANY KEY TO COTINUE...")
     ## LOOP OPCOES
     running = True
 
@@ -57,13 +57,24 @@ if __name__ == "__main__":
             print("----------------------------------------")
             print( "{} unique titles".format(len(df_911.groupby("title"))) )
             print("\n")
+
+        elif "top_common-reasons":
+            print("\n")
+            print("----------------------------------------")
+            print("\t TOP 5 COMMON REASONS CALLS")
+            print("----------------------------------------")
+            
+            if not("Reason" in df_911):
+                #CRIA COLUNA 'REASON'
+                df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
+            
+            print(df_911["Reason"].value_counts().head(5))
         elif option == "quit":
             running = False
         
         if running:
             programPause = input("PRESS ANY KEY TO COTINUE...")
 
-                
             
                 
 
