@@ -19,17 +19,6 @@ if __name__ == "__main__":
 ##
     ## Importa CSV
     df_911 = pd.read_csv("./dataset/911.csv")
-    # try:
-    #     df_911 = pd.read_csv("./dataset/911.csv")
-        
-    #     if pd.isnull(df_911):
-    #         raise OSError
-    # except Exception as ex:
-    #     print(ex)
-    # else:
-    #     print(df_911.info())
-    #     print("\n")
-    #     print(df_911.head())
 
     print(df_911.info())
     print("\n")
@@ -42,13 +31,28 @@ if __name__ == "__main__":
         option = menu.menu_gui()
 
         if option == "top_zips":
-            pass
+            print("\n")
+            print("----------------------------------------")
+            print("\t TOP 5 ZIP CODES")
+            print("----------------------------------------")
+            print(df_911["zip"].value_counts().head(5))
+            # for zip in df_911["zip"].value_counts(5).head():
+            #     rank = 1
+            #     print("{}. {}".format(rank,zip[1]))
+            #     rank += 1
+
         elif option == "top_towns":
-            pass
+
+
         elif option == "unique_titles":
-            pass
+            print("Unique titles")
         elif option == "quit":
             running = False
         
+        opcao = input("Deseja continar? [s/n]")
+        if opcao == 's':
+            running = True
+        else:
+            running = False
 
 ## END - CODE
