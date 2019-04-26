@@ -30,7 +30,21 @@ if __name__ == "__main__":
     print(df_911.head())
     
     pause = input("PRESS ANY KEY TO COTINUE...")
-
+    
+    print("TRATANDO DADOS...", end=" ")
+    
+    #CRIA COLUNA 'REASON'
+    df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
+    #CRIA COLUNA HOUR, MONTH, DoW
+    try:
+        df_911["timeStamp"] = pd.to_datetime(df_911["timeStamp"])
+        df_911["Hour"] = df_911["timeStamp"].apply(lambda time: time.hour)
+        df_911["Month"] = df_911["timeStamp"].apply(lambda time: time.month)
+        df_911["Day of Week"] = df_911["timeStamp"].apply(lambda time: time.dayofweek)
+    except Exception as ex:
+        print(ex)
+    print("DONE")
+    pause = input("PRESS ANY KEY TO COTINUE...")
     ## LOOP OPCOES
     running = True
 
