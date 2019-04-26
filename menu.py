@@ -12,24 +12,24 @@ def menu_gui():
     print("5. Exit")
     print("-------------------------------------------------------------------")
 
-    try:
-        option = int(input("Enter your choice[1-5]:"))
-        print(option)
-        
-        if (option < 1) or (option > 5):
-            raise InvalidOption
-    except InvalidOption as iopt:
-        print(iopt.message)
-        print("Tente outra opcao")
-    else:
-        if option == 1:
-            return "top_zips"
-        if option == 2:
-            return "top_towns"
-        if option == 3:
-            return "unique_titles"
-        if option == 5:
-            return "quit"
+    while True:
+        try:
+            option = int(input("Enter your choice[1-5]:"))
+            print(option)
+            
+            if (option < 1) or (option > 5):
+                raise InvalidOption
+        except InvalidOption as iopt:
+            print("Tente outra opcao")
+        else:
+            if option == 1:
+                return "top_zips"
+            if option == 2:
+                return "top_towns"
+            if option == 3:
+                return "unique_titles"
+            if option == 5:
+                return "quit"
 
 
 if __name__ == "__main__":
@@ -41,4 +41,4 @@ if __name__ == "__main__":
 ##
 class InvalidOption(Exception):
     def __ini__(self, message):
-        self.message = "Opcao invalida!\n"
+        pass
