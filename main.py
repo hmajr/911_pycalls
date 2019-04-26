@@ -3,6 +3,7 @@ if __name__ == "__main__":
 ## IMPORT
 ##
     ## LIBRARIES
+    print("CARREGANDO BIBLIOTECAS...", end=" ")
     import numpy as np
     import pandas as pd
     import seaborn as sns
@@ -12,6 +13,8 @@ if __name__ == "__main__":
 
     import menu
     from MyException import InvalidOption
+    print("DONE")
+
     ## Interative plot offline
     cf.go_offline()
 ## END - IMPORT
@@ -32,7 +35,6 @@ if __name__ == "__main__":
     pause = input("PRESS ANY KEY TO COTINUE...")
     
     print("TRATANDO DADOS...", end=" ")
-    
     #CRIA COLUNA 'REASON'
     df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
     #CRIA COLUNA HOUR, MONTH, DoW
@@ -47,7 +49,6 @@ if __name__ == "__main__":
     pause = input("PRESS ANY KEY TO COTINUE...")
     ## LOOP OPCOES
     running = True
-
 
     while running:
         option = menu.menu_gui()
