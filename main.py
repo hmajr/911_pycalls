@@ -20,14 +20,20 @@ if __name__ == "__main__":
 ## CODE
 ##
     ## Importa CSV
+    print("\nCARREGANDO DADOS...", end=" ")
     df_911 = pd.read_csv("./dataset/911.csv")
+    print("DONE")
 
+    print("================== DATA FRAME PREVIEW ==================")
     print(df_911.info())
     print("\n")
     print(df_911.head())
+    
     pause = input("PRESS ANY KEY TO COTINUE...")
+
     ## LOOP OPCOES
     running = True
+
 
     while running:
         option = menu.menu_gui()
@@ -65,12 +71,12 @@ if __name__ == "__main__":
             print("----------------------------------------")
             print("\t TOP 5 COMMON REASONS CALLS")
             print("----------------------------------------")
-            
-            if not("Reason" in df_911):
-                #CRIA COLUNA 'REASON'
-                df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
-            
-            print(df_911["Reason"].value_counts().head(5))
+
+        if not("Reason" in df_911):
+            #CRIA COLUNA 'REASON'
+            df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
+                    
+        print(df_911["Reason"].value_counts().head(5))
 
             #PLOTA GRAFICO
             sns.countplot(x="Reason", data=df_911)
