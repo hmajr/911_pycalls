@@ -5,6 +5,8 @@ if __name__ == "__main__":
     ## LIBRARIES
     import numpy as np
     import pandas as pd
+    import seaborn as sns
+    import matplotlib.pyplot as plt
     from plotly.offline import download_plotlyjs, plot, iplot
     import cufflinks as cf
 
@@ -69,6 +71,11 @@ if __name__ == "__main__":
                 df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
             
             print(df_911["Reason"].value_counts().head(5))
+
+            #PLOTA GRAFICO
+            sns.countplot(x="Reason", data=df_911)
+            plt.show()
+
         elif option == "quit":
             running = False
         
