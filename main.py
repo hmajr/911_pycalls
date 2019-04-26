@@ -51,6 +51,12 @@ if __name__ == "__main__":
             print("\n")
 
         elif option == "unique_titles":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Counted Unique Titles Codes")
+            print("----------------------------------------")
+            print( "{} unique titles".format(len(df_911.groupby("title"))) )
+            print("\n")
         elif option == "quit":
             running = False
         
