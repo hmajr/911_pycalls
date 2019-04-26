@@ -9,7 +9,7 @@ if __name__ == "__main__":
     import cufflinks as cf
 
     import menu
-
+    from MyException import InvalidOption
     ## Interative plot offline
     cf.go_offline()
 ## END - IMPORT
@@ -36,23 +36,29 @@ if __name__ == "__main__":
             print("\t TOP 5 ZIP CODES")
             print("----------------------------------------")
             print(df_911["zip"].value_counts().head(5))
+            print("\n")
             # for zip in df_911["zip"].value_counts(5).head():
             #     rank = 1
             #     print("{}. {}".format(rank,zip[1]))
             #     rank += 1
 
         elif option == "top_towns":
-
+            print("\n")
+            print("----------------------------------------")
+            print("\t TOP 5 TOWNSHIPS")
+            print("----------------------------------------")
+            print(df_911["twp"].value_counts().head(5))
+            print("\n")
 
         elif option == "unique_titles":
-            print("Unique titles")
         elif option == "quit":
             running = False
         
-        opcao = input("Deseja continar? [s/n]")
-        if opcao == 's':
-            running = True
-        else:
-            running = False
+        if running:
+            programPause = input("PRESS ANY KEY TO COTINUE...")
+
+                
+            
+                
 
 ## END - CODE
