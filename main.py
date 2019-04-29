@@ -42,7 +42,12 @@ if __name__ == "__main__":
         df_911["timeStamp"] = pd.to_datetime(df_911["timeStamp"])
         df_911["Hour"] = df_911["timeStamp"].apply(lambda time: time.hour)
         df_911["Month"] = df_911["timeStamp"].apply(lambda time: time.month)
-        df_911["Day of Week"] = df_911["timeStamp"].apply(lambda time: time.dayofweek)
+        
+        #Converte DoW de int para str dos dias da semana
+        dmap = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thu', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
+        df_911["Day of Week"] = df_911["timeStamp"].apply( lambda time: time.dayofweek )
+        df_911["Day of Week"] = df_911["Day of Week"].map(dmap)
+
     except Exception as ex:
         print(ex)
     print("DONE")
