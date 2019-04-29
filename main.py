@@ -10,7 +10,7 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
     from plotly.offline import download_plotlyjs, plot, iplot
     import cufflinks as cf
-
+    from datetime import datetime
     import menu
     from MyException import InvalidOption
     print("DONE")
@@ -26,34 +26,54 @@ if __name__ == "__main__":
     print("\nCARREGANDO DADOS...", end=" ")
     df_911 = pd.read_csv("./dataset/911.csv")
     print("DONE")
+    # pause = input("PRESS <ENTER> KEY TO COTINUE...")
+    print("TRATANDO DADOS...")
+    
+    #CRIA COLUNA 'REASON'
+    #CRIA COLUNA HOUR, MONTH, DoW
+    try:
+        df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
+        
+        print("Convertendo timeStamp em datatime")
+        df_911["timeStamp"] = pd.to_datetime(df_911["timeStamp"])
+        
+        print("Criando coluna Hour")
+        df_911["Hour"] = df_911["timeStamp"].apply(lambda time: time.hour)
+        
+        print("Criando coluna Month")
+        df_911["Month"] = df_911["timeStamp"].apply(lambda time: time.month)
+        
+        print("Criando coluna Day of Week")
+        df_911["Day of Week"] = df_911["timeStamp"].apply( lambda time: time.dayofweek )
+        
+        print("Criando coluna Date")
+        df_911["Date"] = df_911["timeStamp"].apply(datetime.date)
+        
+
+        #Converte DoW de int para str dos dias da semana
+        dmap = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thu', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
+        df_911["Day of Week"] = df_911["Day of Week"].map(dmap)
+        
+        # # Converte Mes de int para str dos meses do ano
+        # dmap = {1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr", 5: "May", 6: "Jun",
+        #          7: "Jul", 8: "Ago", 9: "Sep", 10: "Out", 11: "Nov", 12: "Dec"}
+        # df_911["Date"] = df_911["Date"].map(dmap)
+
+    except Exception as ex:
+        print(ex)
+    print("DONE!!")
+
 
     print("================== DATA FRAME PREVIEW ==================")
     print(df_911.info())
     print("\n")
     print(df_911.head())
     
-    # pause = input("PRESS <ENTER> KEY TO COTINUE...")
-    
-    print("TRATANDO DADOS...", end=" ")
-    #CRIA COLUNA 'REASON'
-    df_911["Reason"] = df_911["title"].apply(lambda x: x.split(":")[0])
-    #CRIA COLUNA HOUR, MONTH, DoW
-    try:
-        df_911["timeStamp"] = pd.to_datetime(df_911["timeStamp"])
-        df_911["Hour"] = df_911["timeStamp"].apply(lambda time: time.hour)
-        df_911["Month"] = df_911["timeStamp"].apply(lambda time: time.month)
-        
-        #Converte DoW de int para str dos dias da semana
-        dmap = {0: 'Mon', 1: 'Tue', 2: 'Wed', 3: 'Thu', 4: 'Fri', 5: 'Sat', 6: 'Sun'}
-        df_911["Day of Week"] = df_911["timeStamp"].apply( lambda time: time.dayofweek )
-        df_911["Day of Week"] = df_911["Day of Week"].map(dmap)
-
-    except Exception as ex:
-        print(ex)
-    print("DONE")
-    pause = input("PRESS <ENTER> KEY TO COTINUE...")
     ## LOOP OPCOES
     running = True
+
+    ### CONGELA TELA
+    pause = input("PRESS <ENTER> KEY TO COTINUE...")
 
     while running:
         option = menu.menu_gui()
@@ -154,6 +174,31 @@ if __name__ == "__main__":
             sns.lmplot(x="Month", y="Reason", data=byMonth)
             plt.show()
             plt.clf()
+
+        elif option == "plot_by_date":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Plot by date")
+            print("----------------------------------------")
+            
+            byDate = df_911.groupby("Date").count()
+            print(byDate.head())
+            #PLOTA GRAFICO
+            byDate["Reason"].plot()
+            plt.show()
+            plt.clf()
+        # elif option == "plot_reason_by_date":
+        #     print("\n")
+        #     print("----------------------------------------")
+        #     print("\t Plot by date")
+        #     print("----------------------------------------")
+            
+        #     byDate = df_911.groupby("Date").count()
+        #     print(byDate.head())
+        #     #PLOTA GRAFICO
+        #     byDate["Reason"].plot()
+        #     plt.show()
+        #     plt.clf()
 
         elif option == "quit":
             running = False

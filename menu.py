@@ -13,10 +13,13 @@ def menu_gui():
     print("5. Most common reason for 911 calls")
     print("6. Common reasons per day of week")
     print("7. Common reasons per month")
-    print("8. Plot by Month")
-    print("9. Linear regression by month")
-    print("10. Menu Option 4")
-    print("11. Exit")
+    print("8. Plot 911 calls by Month")
+    print("9. Linear regression 911 calls by month")
+    print("10. Plot 911 calls by Date")
+    print("11. Plot count 911 calls by date")
+    print("12. Exit")
+    print("13. Exit")
+    print("14. Exit")
     print("---------------------------------------------------------------------------")
 
     while True:
@@ -50,7 +53,11 @@ def menu_gui():
                 return "plot_by_month"
             if option == 9:
                 return "by_month_linear"
+            if option == 10:
+                return "plot_by_date"
             if option == 11:
+                return "plot_reason_by_date"
+            if option == 14:
                 return "quit"
 
 
