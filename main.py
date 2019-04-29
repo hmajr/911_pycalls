@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print("\n")
     print(df_911.head())
     
-    pause = input("PRESS <ENTER> KEY TO COTINUE...")
+    # pause = input("PRESS <ENTER> KEY TO COTINUE...")
     
     print("TRATANDO DADOS...", end=" ")
     #CRIA COLUNA 'REASON'
@@ -110,11 +110,11 @@ if __name__ == "__main__":
             print("----------------------------------------")
             print("\t Common reasons per day of week")
             print("----------------------------------------")
-            group = df_911.groupby("Day of Week")["Reason"]
-
+            
             #PLOTA GRAFICO
-            sns.countplot(x=group, data=df_911)
+            sns.countplot( x = "Day of Week", data = df_911, hue = "Reason" )
             plt.show()
+            plt.clf()
 
         elif option == "quit":
             running = False
