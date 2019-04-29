@@ -104,6 +104,18 @@ if __name__ == "__main__":
             plt.show()
             plt.clf()
 
+
+        elif option == "reason_dow":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Common reasons per day of week")
+            print("----------------------------------------")
+            group = df_911.groupby("Day of Week")["Reason"]
+
+            #PLOTA GRAFICO
+            sns.countplot(x=group, data=df_911)
+            plt.show()
+
         elif option == "quit":
             running = False
             break
