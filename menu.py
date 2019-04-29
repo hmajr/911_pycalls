@@ -14,7 +14,7 @@ def menu_gui():
     print("6. Common reasons per day of week")
     print("7. Common reasons per month")
     print("8. Plot by Month")
-    print("9. Menu Option 4")
+    print("9. Linear regression by month")
     print("10. Menu Option 4")
     print("11. Exit")
     print("---------------------------------------------------------------------------")
@@ -48,6 +48,8 @@ def menu_gui():
                 return "reason_month"
             if option == 8:
                 return "plot_by_month"
+            if option == 9:
+                return "by_month_linear"
             if option == 11:
                 return "quit"
 

@@ -141,6 +141,19 @@ if __name__ == "__main__":
             plt.show()
             plt.clf()
 
+        elif option == "by_month_linear":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Linear regression by month")
+            print("----------------------------------------")
+            byMonth = df_911.groupby("Month").count()
+            byMonth = byMonth.reset_index()
+            print( byMonth.head() )
+            
+            #PLOTA GRAFICO
+            sns.lmplot(x="Month", y="Reason", data=byMonth)
+            plt.show()
+            plt.clf()
 
         elif option == "quit":
             running = False
