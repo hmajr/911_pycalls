@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print("\n")
     print(df_911.head())
     
-    pause = input("PRESS ANY KEY TO COTINUE...")
+    pause = input("PRESS <ENTER> KEY TO COTINUE...")
     
     print("TRATANDO DADOS...", end=" ")
     #CRIA COLUNA 'REASON'
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     except Exception as ex:
         print(ex)
     print("DONE")
-    pause = input("PRESS ANY KEY TO COTINUE...")
+    pause = input("PRESS <ENTER> KEY TO COTINUE...")
     ## LOOP OPCOES
     running = True
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
             break
         
         if running:
-            programPause = input("PRESS ANY KEY TO COTINUE...")
+            programPause = input("PRESS <ENTER> KEY TO COTINUE...")
 
             
                 
