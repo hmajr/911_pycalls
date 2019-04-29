@@ -4,18 +4,19 @@ from MyException import InvalidOption
 def menu_gui():
     #Limpa tela terminal
     os.system("cls" if os.name == 'nt' else 'clear')
-    option_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    option_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     print("------------------------------ 911 CALLS DATA -----------------------------")
-    print("1. Top 5 zip codes for 911 calls")
-    print("2. Top 5 townships for 911 calls")
-    print("3. Count unique titles codes")
-    print("4. Most common reason for 911 calls")
-    print("5. Menu Option 4")
-    print("6. Menu Option 4")
+    print("1. Print head data frame 911 calls")
+    print("2. Top 5 zip codes for 911 calls")
+    print("3. Top 5 townships for 911 calls")
+    print("4. Count unique titles codes")
+    print("5. Most common reason for 911 calls")
+    print("6. Common reasons per day of week")
     print("7. Menu Option 4")
     print("8. Menu Option 4")
     print("9. Menu Option 4")
-    print("10. Exit")
+    print("10. Menu Option 4")
+    print("11. Exit")
     print("---------------------------------------------------------------------------")
 
     while True:
@@ -32,14 +33,18 @@ def menu_gui():
             print(ve)
         else:
             if option == 1:
-                return "top_zips"
+                return "print_df"
             if option == 2:
-                return "top_towns"
+                return "top_zips"
             if option == 3:
-                return "unique_titles"
+                return "top_towns"
             if option == 4:
+                return "unique_titles"
+            if option == 5:
                 return "top_common-reasons"
-            if option == 10:
+            if option == 6:
+                return "reason_dow"
+            if option == 11:
                 return "quit"
 
 

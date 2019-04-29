@@ -86,7 +86,7 @@ if __name__ == "__main__":
             print( "{} unique titles".format(len(df_911.groupby("title"))) )
             print("\n")
 
-        elif "top_common-reasons":
+        elif option == "top_common-reasons":
             print("\n")
             print("----------------------------------------")
             print("\t TOP 5 COMMON REASONS CALLS")
@@ -97,9 +97,11 @@ if __name__ == "__main__":
             #PLOTA GRAFICO
             sns.countplot(x="Reason", data=df_911)
             plt.show()
+            plt.clf()
 
         elif option == "quit":
             running = False
+            break
         
         if running:
             programPause = input("PRESS ANY KEY TO COTINUE...")
