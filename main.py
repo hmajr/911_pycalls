@@ -116,6 +116,17 @@ if __name__ == "__main__":
             plt.show()
             plt.clf()
 
+        elif option == "reason_month":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Common reasons per month")
+            print("----------------------------------------")
+            
+            #PLOTA GRAFICO
+            sns.countplot( x = "Month", data = df_911, hue = "Reason" )
+            plt.show()
+            plt.clf()
+
         elif option == "quit":
             running = False
             break

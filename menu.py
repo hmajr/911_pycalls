@@ -12,7 +12,7 @@ def menu_gui():
     print("4. Count unique titles codes")
     print("5. Most common reason for 911 calls")
     print("6. Common reasons per day of week")
-    print("7. Menu Option 4")
+    print("7. Common reasons per month")
     print("8. Menu Option 4")
     print("9. Menu Option 4")
     print("10. Menu Option 4")
@@ -44,6 +44,8 @@ def menu_gui():
                 return "top_common-reasons"
             if option == 6:
                 return "reason_dow"
+            if option == 7:
+                return "reason_month"
             if option == 11:
                 return "quit"
 
