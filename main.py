@@ -127,6 +127,21 @@ if __name__ == "__main__":
             plt.show()
             plt.clf()
 
+        elif option == "plot_by_month":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Plot by month")
+            print("----------------------------------------")
+            
+            byMonth = df_911.groupby("Month").count()
+            print( byMonth.head() )
+            
+            #PLOTA GRAFICO
+            byMonth["Reason"].plot()
+            plt.show()
+            plt.clf()
+
+
         elif option == "quit":
             running = False
             break
