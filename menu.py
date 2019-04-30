@@ -16,7 +16,7 @@ def menu_gui():
     print("8. Plot 911 calls by Month")
     print("9. Linear regression 911 calls by month")
     print("10. Plot 911 calls by Date")
-    print("11. Plot count 911 calls by date")
+    print("11. Plot count 911 calls especific reason by date")
     print("12. Exit")
     print("13. Exit")
     print("14. Exit")

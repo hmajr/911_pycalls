@@ -187,18 +187,13 @@ if __name__ == "__main__":
             byDate["Reason"].plot()
             plt.show()
             plt.clf()
-        # elif option == "plot_reason_by_date":
-        #     print("\n")
-        #     print("----------------------------------------")
-        #     print("\t Plot by date")
-        #     print("----------------------------------------")
             
-        #     byDate = df_911.groupby("Date").count()
-        #     print(byDate.head())
-        #     #PLOTA GRAFICO
-        #     byDate["Reason"].plot()
-        #     plt.show()
-        #     plt.clf()
+        elif option == "plot_reason_by_date":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Plot 911 calls especific reason by date")
+            print("----------------------------------------")
+            
 
         elif option == "quit":
             running = False
