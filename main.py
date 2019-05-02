@@ -79,127 +79,80 @@ if __name__ == "__main__":
         option = menu.menu_gui()
 
         if option == "print_df":
-            print("----------------------------------------")
-            print("\t FIRST 5 OF DATA FRAME")
-            print("----------------------------------------")
+            #Printa head data frame
             print(df_911.head())
+        
         elif option == "top_zips":
-            print("\n")
-            print("----------------------------------------")
-            print("\t TOP 5 ZIP CODES")
-            print("----------------------------------------")
+            #Printa top CEPS
             print(df_911["zip"].value_counts().head(5))
             print("\n")
-            # for zip in df_911["zip"].value_counts(5).head():
-            #     rank = 1
-            #     print("{}. {}".format(rank,zip[1]))
-            #     rank += 1
 
         elif option == "top_towns":
-            print("\n")
-            print("----------------------------------------")
-            print("\t TOP 5 TOWNSHIPS")
-            print("----------------------------------------")
+            #Printa top cidades
             print(df_911["twp"].value_counts().head(5))
             print("\n")
 
         elif option == "unique_titles":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Counted Unique Titles Codes")
-            print("----------------------------------------")
+            #Printa valores unicos
             print( "{} unique titles".format(len(df_911.groupby("title"))) )
             print("\n")
 
         elif option == "top_common-reasons":
-            print("\n")
-            print("----------------------------------------")
-            print("\t TOP 5 COMMON REASONS CALLS")
-            print("----------------------------------------")
-            
+            #Printa HEAD
             print(df_911["Reason"].value_counts().head(5))
-
-            #PLOTA GRAFICO
+            #Plota grafico Razoes
             sns.countplot(x="Reason", data=df_911)
             plt.show()
             plt.clf()
 
-
         elif option == "reason_dow":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Common reasons per day of week")
-            print("----------------------------------------")
-            
-            #PLOTA GRAFICO
+            #Plota grafico Razoes por dia da semana
             sns.countplot( x = "Day of Week", data = df_911, hue = "Reason" )
             plt.show()
             plt.clf()
 
         elif option == "reason_month":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Common reasons per month")
-            print("----------------------------------------")
-            
-            #PLOTA GRAFICO
+            #Plota grafico razoes por mes
             sns.countplot( x = "Month", data = df_911, hue = "Reason" )
             plt.show()
             plt.clf()
 
         elif option == "plot_by_month":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Plot by month")
-            print("----------------------------------------")
-            
+            #Casos por mes
             byMonth = df_911.groupby("Month").count()
             print( byMonth.head() )
-            
-            #PLOTA GRAFICO
+            #Plota grafico casos por mes
             byMonth["Reason"].plot()
             plt.show()
             plt.clf()
 
         elif option == "by_month_linear":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Linear regression by month")
-            print("----------------------------------------")
+            #Agrupa por mes casos
             byMonth = df_911.groupby("Month").count()
             byMonth = byMonth.reset_index()
             print( byMonth.head() )
-            
-            #PLOTA GRAFICO
+            #Ploota grafico evolucao casos por mes
             sns.lmplot(x="Month", y="Reason", data=byMonth)
             plt.show()
             plt.clf()
 
         elif option == "plot_by_date":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Plot by date")
-            print("----------------------------------------")
-            
+            #Agrupa por data
             byDate = df_911.groupby("Date").count()
             print(byDate.head())
-            #PLOTA GRAFICO
+            #Plota grafico casos por data
             byDate["Reason"].plot()
             plt.show()
             plt.clf()
             
         elif option == "plot_reason_by_date":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Plot 911 calls especific reason by date")
-            print("----------------------------------------")
-
+            #inicializa opcao de razao
             reason = ""
 
-            #Valida razao
+            #Valida input razao
             while True:
                 try:
-                    #lista itens unicos
+                    #lista de opcoes
                     list_reasons = list(df_911.Reason.unique())
                     
                     print("== LISTA DE OPCOES ==")
@@ -218,29 +171,38 @@ if __name__ == "__main__":
             # Cria dataframe com a razao selecionada
             df_reason = df_911.loc[df_911["Reason"] == reason]
             byReasonDate = df_reason.groupby("Date").count()
+            #Plota grafico de evolucao de razao especifica
             byReasonDate["Reason"].plot()
-            #Mostra grafico
             plt.show()
             plt.clf()
 
-        elif option == "heatmap_hours_dow":
-            print("\n")
-            print("----------------------------------------")
-            print("\t Heatmap hours per day of week")
-            print("----------------------------------------")
-            
+        elif option == "heatmap_hours_dow" or option == "cluster_hours_dow":
+            #Cria matriz casos hora por dia da semana
             byHourDOW = df_911.groupby(["Day of Week", "Hour"]).count()["Reason"].unstack()
+            
+            if option == "heatmap_hours_dow":
+                sns.heatmap(byHourDOW)
+            else:
+                sns.clustermap(byHourDOW)
+            plt.show()
+            plt.clf()
 
-            sns.heatmap(byHourDOW)
+        elif option == "heatmap_month_dow" or option == "cluster_month_dow":
+            #Cria matriz casos dia da semana por mes
+            byMonthDOW = df_911.groupby(["Day of Week", "Month"]).count()["Reason"].unstack()
+
+            if option == "heatmap_month_dow":
+                sns.heatmap(byHourDOW)
+            else:   
+                sns.clustermap(byHourDOW)
+            plt.show()
+            plt.clf()
 
         elif option == "quit":
             running = False
             break
-        
         if running:
             programPause = input("PRESS <ENTER> KEY TO COTINUE...")
 
-            
-                
-
+ 
 ## END - CODE
