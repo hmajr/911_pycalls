@@ -4,7 +4,7 @@ from MyException import InvalidOption
 def menu_gui():
     #Limpa tela terminal
     os.system("cls" if os.name == 'nt' else 'clear')
-    option_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    option_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14]
     print("------------------------------ 911 CALLS DATA -----------------------------")
     print("1. Print head data frame 911 calls")
     print("2. Top 5 zip codes for 911 calls")

@@ -193,7 +193,36 @@ if __name__ == "__main__":
             print("----------------------------------------")
             print("\t Plot 911 calls especific reason by date")
             print("----------------------------------------")
+
+            reason = ""
+
+            #Valida razao
+            while True:
+                try:
+                    #lista itens unicos
+                    list_reasons = list(df_911.Reason.unique())
+                    
+                    print("== LISTA DE OPCOES ==")
+                    for item in list_reasons:
+                        print(item)
+
+                    reason = input("\nEscolha a razão de chamados: ")
+                    
+                    if not(reason in list_reasons):
+                        raise ValueError("Digite um dos valores validos")
+                except ValueError as ve:
+                    print(ve)
+                else:
+                    break
             
+            # Cria dataframe com a razao selecionada
+            df_reason = df_911.loc[df_911["Reason"] == reason]
+            byReasonDate = df_reason.groupby("Date").count()
+            byReasonDate["Reason"].plot()
+            #Mostra grafico
+            plt.show()
+            plt.clf()
+
 
         elif option == "quit":
             running = False
