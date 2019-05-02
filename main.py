@@ -223,6 +223,15 @@ if __name__ == "__main__":
             plt.show()
             plt.clf()
 
+        elif option == "heatmap_hours_dow":
+            print("\n")
+            print("----------------------------------------")
+            print("\t Heatmap hours per day of week")
+            print("----------------------------------------")
+            
+            byHourDOW = df_911.groupby(["Day of Week", "Hour"]).count()["Reason"].unstack()
+
+            sns.heatmap(byHourDOW)
 
         elif option == "quit":
             running = False

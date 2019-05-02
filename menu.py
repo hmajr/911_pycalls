@@ -17,7 +17,7 @@ def menu_gui():
     print("9. Linear regression 911 calls by month")
     print("10. Plot 911 calls by Date")
     print("11. Plot count 911 calls especific reason by date")
-    print("12. Exit")
+    print("12. Heatmap hours per day of week")
     print("13. Exit")
     print("14. Exit")
     print("---------------------------------------------------------------------------")
@@ -29,9 +29,7 @@ def menu_gui():
             if option in option_list:
                 print(option)
             else:
-                raise InvalidOption
-        except InvalidOption as iopt:
-            print("Tente outra opcao")
+                raise ValueError("Tente outra opcao")
         except ValueError as ve:
             print(ve)
         else:
@@ -57,6 +55,8 @@ def menu_gui():
                 return "plot_by_date"
             if option == 11:
                 return "plot_reason_by_date"
+            if option == 12:
+                return "heatmap_hours_dow"
             if option == 14:
                 return "quit"
 
