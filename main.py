@@ -101,19 +101,32 @@ if __name__ == "__main__":
             #Printa HEAD
             print(df_911["Reason"].value_counts().head(5))
             #Plota grafico Razoes
-            sns.countplot(x="Reason", data=df_911)
+            sns.countplot(x="Reason", data=df_911, palette="viridis")
+
             plt.show()
             plt.clf()
 
         elif option == "reason_dow":
+            plt.figure(figsize=(20, 6))
             #Plota grafico Razoes por dia da semana
-            sns.countplot( x = "Day of Week", data = df_911, hue = "Reason" )
+            sns.countplot(x="Day of Week", data=df_911,
+                          hue="Reason", palette="viridis")
+            # realoca a legenda
+            plt.legend(bbox_to_anchor=(1.01, 1), loc=2)
+            
+
             plt.show()
             plt.clf()
 
         elif option == "reason_month":
+            plt.figure(figsize=(20,6))
             #Plota grafico razoes por mes
-            sns.countplot( x = "Month", data = df_911, hue = "Reason" )
+            sns.countplot(x="Month", data=df_911,
+                          hue="Reason", palette="viridis")
+            
+            # realoca a legenda
+            plt.legend(bbox_to_anchor=(1.01, 1), loc=2)
+            
             plt.show()
             plt.clf()
 
@@ -121,8 +134,13 @@ if __name__ == "__main__":
             #Casos por mes
             byMonth = df_911.groupby("Month").count()
             print( byMonth.head() )
+
             #Plota grafico casos por mes
-            byMonth["Reason"].plot()
+            graphMonth = byMonth["Reason"].plot()
+
+            #linhas grade (x,y)
+            graphMonth.grid(True, which="both", axis="both")
+
             plt.show()
             plt.clf()
 
@@ -130,9 +148,13 @@ if __name__ == "__main__":
             #Agrupa por mes casos
             byMonth = df_911.groupby("Month").count()
             byMonth = byMonth.reset_index()
+
             print( byMonth.head() )
-            #Ploota grafico evolucao casos por mes
+            
+            #Plota grafico evolucao casos por mes
+            sns.set(style="whitegrid")
             sns.lmplot(x="Month", y="Reason", data=byMonth)
+
             plt.show()
             plt.clf()
 
@@ -140,8 +162,11 @@ if __name__ == "__main__":
             #Agrupa por data
             byDate = df_911.groupby("Date").count()
             print(byDate.head())
+
             #Plota grafico casos por data
-            byDate["Reason"].plot()
+            # sns.set(style="whitegrid")
+            byDate["Reason"].plot().grid(True, which="both", axis="both")
+            
             plt.show()
             plt.clf()
             
@@ -172,7 +197,7 @@ if __name__ == "__main__":
             df_reason = df_911.loc[df_911["Reason"] == reason]
             byReasonDate = df_reason.groupby("Date").count()
             #Plota grafico de evolucao de razao especifica
-            byReasonDate["Reason"].plot()
+            byReasonDate["Reason"].plot().grid(True, which="both", axis="both")
             plt.show()
             plt.clf()
 
@@ -181,9 +206,9 @@ if __name__ == "__main__":
             byHourDOW = df_911.groupby(["Day of Week", "Hour"]).count()["Reason"].unstack()
             
             if option == "heatmap_hours_dow":
-                sns.heatmap(byHourDOW)
+                sns.heatmap(byHourDOW, cmap="viridis")
             else:
-                sns.clustermap(byHourDOW)
+                sns.clustermap(byHourDOW, cmap="viridis")
             plt.show()
             plt.clf()
 
@@ -192,9 +217,9 @@ if __name__ == "__main__":
             byMonthDOW = df_911.groupby(["Day of Week", "Month"]).count()["Reason"].unstack()
 
             if option == "heatmap_month_dow":
-                sns.heatmap(byHourDOW)
+                sns.heatmap(byHourDOW, cmap="viridis")
             else:   
-                sns.clustermap(byHourDOW)
+                sns.clustermap(byHourDOW, cmap="viridis")
             plt.show()
             plt.clf()
 
