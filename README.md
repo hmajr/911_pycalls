@@ -12,7 +12,7 @@ For this capstone project we will be analyzing some 911 call data from Kaggle.
   - What are the top 5 townships (twp) for 911 calls?
   - Take a look at the 'title' column, how many unique title codes are there?
 - Creating new features
-In the titles column there are "Reasons/Departments" specified before the title code. These are EMS, Fire, and Traffic. Use .apply() with a custom lambda expression to create a new column called "Reason" that contains this string value.
+  - In the titles column there are "Reasons/Departments" specified before the title code. These are EMS, Fire, and Traffic. Use .apply() with a custom lambda expression to create a new column called "Reason" that contains this string value.
   - What is the most common Reason for a 911 call based off of this new column?
   - Now use seaborn to create a countplot of 911 calls by Reason.
   - What is the data type of the objects in the timeStamp column?
